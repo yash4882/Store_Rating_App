@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  port: 5432
+  username: postgres
+  password: postgres
+  host: localhost
+
+
+development:
+  <<: *default
+  database: store_rating_app_development
+
+test:
+  <<: *default
+  database: store_rating_app_test
+
+production:
+  <<: *default
+  database: store_rating_app_production
+  username: store_rating_app
+  password: <%= ENV["STORE_RATING_APP_DATABASE_PASSWORD"] %>
