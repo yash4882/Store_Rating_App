@@ -1,0 +1,72 @@
+<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-700">Sign up</h2>
+  </div>
+  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-[480px]">
+    <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+
+      <%= form_with model: @user, url: registration_path, class:"space-y-6" do |f| %>
+
+		<% if f.object.errors.any? %>
+			<% f.object.errors.full_messages.each do |message| %>
+			<div><%= message %></div>
+			<% end %>
+		<% end %>
+
+		<div class="grid grid-cols-2 gap-4">
+	        <div class="py-2">
+	          <%= f.label :name, class:"block text-sm font-medium leading-6 text-gray-700", for:"email"  %>
+	          <div class="mt-2">
+	            <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1.5 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" %>
+	          </div>
+	        </div>
+
+	        <div class="py-2">
+	          <%= f.label :email, class:"block text-sm font-medium leading-6 text-gray-700", for:"email"  %>
+	          <div class="mt-2">
+	            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1.5 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" %>
+	          </div>
+	        </div>
+		</div>
+
+        <div class="py-3">
+          <%= f.label :address, class:"block text-sm font-medium leading-6 text-gray-700", for:"email"  %>
+          <div class="mt-2">
+            <%= f.text_field :address, autofocus: true, autocomplete: "address", class:"block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1.5 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" %>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+	        <div class="py-2">
+	          <%= f.label :password, class:"block text-sm font-medium leading-6 text-gray-700", for:"password" %>
+	          <div class="mt-2">
+	            <%= f.password_field :password, autocomplete: "new-password", class:"block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1.5 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" %>
+	          </div>
+	        </div>
+
+	        <div class="py-2">
+	          <%= f.label :password_confirmation, class:"block text-sm font-medium leading-6 text-gray-700", for:"password_confirmation" %>
+	          <div class="mt-2">
+	            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1.5 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" %>
+	          </div>
+	        </div>
+	    </div>
+
+		<div class="py-2">
+		    <%= f.label :role, class:"block text-sm font-medium leading-6 text-gray-700"%>
+		    <div class="mt-2">
+	    		<%= f.select :role, User.roles.keys.map { |role| [role.humanize, role] }, { include_blank: 'Select Role' }, class: "block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" %>
+	  		</div>
+	  	</div>
+
+        <div>
+          <%= f.submit "Sign up", class:"flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"%>
+        </div>
+      <% end %>
+    </div>
+
+    <p class="mt-10 text-center text-sm text-gray-500">
+      Already a member?
+      <%= link_to "Log in", new_session_path, class:"font-semibold leading-6 text-gray-600 hover:text-gray-700" %>
+    </p>
+  </div>
+</div>

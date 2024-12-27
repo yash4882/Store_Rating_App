@@ -1,0 +1,43 @@
+<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-700">Change Your Password</h2>
+  </div>
+  <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-[480px]">
+    <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+
+      <%= form_with model: current_user, url: password_path, class:"space-y-6" do |f| %>
+
+	  	<% if f.object.errors.any? %>
+	  		<% f.object.errors.full_messages.each do |message| %>
+	  			<div><%= message %></div>
+			<% end %>
+		<% end %>
+
+        <div class="py-2">
+          <%= f.label :password_challenge, class:"block text-sm font-medium leading-6 text-gray-700", for:"password" %>
+          <div class="mt-2">
+            <%= f.password_field :password_challenge, autocomplete: "last-password", class:"block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1.5 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" %>
+          </div>
+        </div>
+
+        <div class="py-2">
+          <%= f.label :password, class:"block text-sm font-medium leading-6 text-gray-700", for:"password" %>
+          <div class="mt-2">
+            <%= f.password_field :password, autocomplete: "new-password", class:"block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1.5 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" %>
+          </div>
+        </div>
+
+        <div class="py-2">
+          <%= f.label :password_confirmation, class:"block text-sm font-medium leading-6 text-gray-700", for:"password_confirmation" %>
+          <div class="mt-2">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1.5 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" %>
+          </div>
+        </div>
+
+        <div>
+          <%= f.submit "Submit", class:"flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
